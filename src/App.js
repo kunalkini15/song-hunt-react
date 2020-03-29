@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {Router, Route, Redirect } from "react-router-dom";
+import './styles.css';
+import history from './history';
+import Home from './containers/Home';
+import UserHome from './containers/UserHome';
+import ArtistHome from './containers/ArtistHome';
+import {reactLocalStorage} from 'reactjs-localstorage';
 
-function App() {
+const ProtectedRoute = ({ component: Comp, path,  ...rest }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+        <Route
+              path={path}
+              render={props => {
+                    return reactLocalStorage.get('email',undefined, true) ? <Comp {...rest} /> : <Redirect to="/" />;
 
-export default App;
+              }
+            }
+        />
+  );
+};
+export default class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Router history={history}>
+          <Route exact path="/" component={() => <Home setEmail = {this.setEmail}/>} />
+          <ProtectedRoute path="/user" component={() => <UserHome email={this.state.email}/>}/>
+          <ProtectedRoute path="/artist" component={() => <ArtistHome/>}/>
+        </Router>
+      </div>
+    )
+  }
+}

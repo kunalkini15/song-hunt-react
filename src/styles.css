@@ -1,0 +1,138 @@
+@import "~antd/dist/antd.css";
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root{
+  --primary-red: rgba(255, 122, 122, 0.7);
+  --primary-green: rgb(56, 204, 140);
+  --accent-blue: rgb(96, 85, 165);
+  --neutral-dark-blue: rgb(62, 60, 73);
+  --neutral-grayish-blue: rgb(185, 182, 211);
+}
+
+body{
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--primary-red);
+}
+
+/* antd Overrides */
+.ant-btn-primary{
+    background-color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+.ant-btn-primary:hover{
+    background-color: rgba(96, 85, 165,0.8);
+    border-color: rgba(96, 85, 165,0.8);
+}
+
+.ant-btn-primary:active{
+    outline: none;
+    background-color: rgba(96, 85, 165,0.8);
+    border-color: rgba(96, 85, 165,0.8);
+}
+
+.ant-btn-primary:focus{
+    outline: none;
+    background-color: rgba(96, 85, 165,0.8);
+    border-color: rgba(96, 85, 165,0.8);
+}
+
+/* common */
+
+.white-text{
+    color: white;
+}
+
+.float-right{
+    float: right;
+}
+
+.float-left{
+    float: left;
+}
+.row-top-margin{
+    margin-top: 2vh;
+}
+
+.btn-top-margin{
+    margin-top: 2vh;
+}
+
+/* Home */
+
+.home-page-left{
+    padding: 25vh 8vw 25vh 13vw;
+    text-align: center;
+}
+
+.home-page-heading{
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: 10px;
+    margin-bottom: 0;
+}
+
+.home-page-register-btn{
+    width: 30vw;
+    border-radius: 10px;
+}
+
+.home-page-right{
+    padding: 22vh 0vw;
+}
+
+.home-page-form{
+    width: 30vw;
+    padding: 2vh 2.5vw 5vh 2.5vw;
+    border: 1px solid rgba(232, 232, 232, 0.5);
+    border-radius: 10px;
+    background-color: rgba(232, 232, 232, 0.5);
+}
+
+.home-page-input-field{
+    margin: 2vh 0;
+    padding: 1vh 1vw 1vh 2vw;
+    border-radius: 10px;
+}
+
+.home-page-login-btn{
+    width: 12vw;
+    border-radius: 15px;
+    margin-top: 2vh;
+}
+
+.content{
+    height: 80vh;
+    overflow: auto;
+    background: white;
+
+}
+
+/* Topbar */
+.header{
+    height: 10vh;
+    background: #e8e8e8;
+}
+
+/* Bottombar */
+.footer{
+    height: 10vh;
+    background: #e8e8e8;
+}
+
+/* ArtistDetails */
+.artist-details-container{
+    margin: 2vh 10vw;
+}
+
+/* ArtistSongDetails */
+.artist-song-details-conatiner{
+    margin: 2vh 10vw;
+}
+
+.song-artwork-img{
+    width: 10vw;
+    height: 10vh;
+}
+
+
