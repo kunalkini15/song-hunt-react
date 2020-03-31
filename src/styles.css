@@ -41,6 +41,22 @@ body{
     padding: 10px 5px;
 }
 
+.ant-pagination-item-active a
+{
+    color: var(--accent-blue)
+}
+
+.ant-pagination-item-active{
+    border-color: var(--accent-blue);
+}
+
+.ant-pagination-item-active:focus, .ant-pagination-item-active:hover{
+    border-color: var(--accent-blue);
+}
+.ant-pagination-item-active:hover a, .ant-pagination-item-active:focus a{
+    color: var(--accent-blue);
+}
+
 /* common */
 
 .white-text{
@@ -74,6 +90,16 @@ body{
 .heading{
     color: var(--accent-blue);
     font-weight: bolder;
+}
+
+.loading-icon-container{
+    text-align: center;
+}
+
+.loading-icon{
+    font-size: 24;
+    color: var(--accent-blue);
+
 }
 
 /* Home */
@@ -165,16 +191,17 @@ body{
 
 /* ArtistSongDetails */
 
-.artist-song-details-heading{
-    margin: 1vh 5vw;
-    font-weight: bold;
-}
+
 .artist-song-details-table{
     margin: 0 5vw;
 }
 
 .artist-song-details-conatiner{
     margin: 2vh 10vw;
+}
+.artist-song-details-heading{
+    margin: 1vh 5vw;
+    font-weight: bold;
 }
 
 .song-artwork-img{
@@ -204,6 +231,331 @@ body{
     color: var(--neutral-grayish-blue)
 }
 
+@media all and (max-width: 480px) {
+    /* Antd Overrides: 480px */
+    .ant-table thead > tr > th, .ant-table tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+        padding: 5px 5px;
+    }
+
+
+    /* Home: 480px */
+
+    .home-page-left{
+        padding: 5vh 2vw;
+        text-align: center;
+    }
+
+    .home-page-heading{
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 10px;
+        margin-bottom: 0;
+    }
+
+    .home-page-info-text{
+        text-align: left;
+    }
+
+    .home-page-register-btn{
+        width: 80vw;
+        border-radius: 10px;
+    }
+
+    .home-page-right{
+        padding: 10vh 2vw;
+    }
+
+    .home-page-form{
+        width: 80vw;
+        margin: 3vh 8vw;
+        padding: 2vh 2vw;
+        border: 1px solid rgba(232, 232, 232, 0.5);
+        border-radius: 10px;
+        background-color: rgba(232, 232, 232, 0.5);
+    }
+
+    .home-page-input-field{
+        margin: 2vh 0;
+        padding: 1vh 1vw 1vh 2vw;
+        border-radius: 10px;
+    }
+
+    .home-page-login-btn{
+        width: 35vw;
+        border-radius: 15px;
+        margin-top: 2vh;
+    }
+
+    .content{
+        height: 80vh;
+        overflow: auto;
+        background: white;
+    }
+
+    /* Topbar: 480px */
+    .header{
+        padding: 0 10px;
+    }
+
+    /* Bottombar: 480px */
+    .footer{
+        padding: 18px 10px;
+    }
+
+    /* UserHomeContent: 480px */
+    .user-home-content{
+        padding: 0 1vw;
+    }
+
+    /* Topsongs: 480px */
+    .top-songs-table table{
+        width: 100vw;
+        overflow-x: auto;
+    }
+    .user-home-song-artwork-img{
+        width: 15vw;
+        height: 10vh;
+    }
+    .rating-info-text{
+        margin-top: 1vh;
+        font-size: 8px;
+        color: var(--neutral-grayish-blue)
+    }
+
+
+    /* ArtistDetails: 480px */
+    .artist-details-container{
+        margin: 1vh 10vw;
+    }
+
+    #add-new-song-btn{
+        float:left;
+        margin-top:0;
+    }
+
+    /* ArtistSongDetails: 480px */
+
+    .artist-song-details-table{
+        margin: 0 1vw;
+    }
+
+    .artist-song-details-conatiner{
+        margin: 2vh 10vw;
+    }
+    .artist-song-details-heading{
+        margin: 1vh 1vw;
+        font-weight: bold;
+    }
+
+    .artist-song-img{
+        width: 15vw;
+        height: 10vh;
+
+    }
+
+    
+}
+
+@media all and (min-width: 480px) and (max-width: 768px) {
+    /* Home: 768px */
+
+    .home-page-left{
+        padding: 5vh 15vw;
+        text-align: center;
+    }
+
+    .home-page-heading{
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 10px;
+        margin-bottom: 0;
+    }
+
+    .home-page-info-text{
+        text-align: left;
+    }
+
+    .home-page-register-btn{
+        width: 35vw;
+        border-radius: 10px;
+    }
+
+    .home-page-right{
+        padding: 5vh 15vw;
+    }
+
+    .home-page-form{
+        width: 50vw;
+        margin: 0 10vw;
+        padding: 2vh 2vw;
+        border: 1px solid rgba(232, 232, 232, 0.5);
+        border-radius: 10px;
+        background-color: rgba(232, 232, 232, 0.5);
+    }
+
+    .home-page-input-field{
+        margin: 2vh 0;
+        padding: 1vh 1vw 1vh 2vw;
+        border-radius: 10px;
+    }
+
+    .home-page-login-btn{
+        width: 20vw;
+        border-radius: 15px;
+        margin-top: 2vh;
+        margin-right: 2vw;
+    }
+
+    /* Topbar: 768px */
+    .header{
+        padding: 0 10px;
+    }
+
+    /* Bottombar: 768px */
+    .footer{
+        padding: 18px 10px;
+    }
+
+    /* Topsongs: 768px */
+    .user-home-song-artwork-img{
+        width: 15vw;
+        height: 10vh;
+    }
+
+    /* ArtistDetails: 768px */
+    .artist-details-container{
+        margin: 1vh 10vw;
+    }
+
+    #add-new-song-btn{
+        float:left;
+        margin-top:0;
+    }
+
+    /* ArtistSongDetails: 768px */
+
+    .artist-song-details-table{
+        margin: 0 1vw;
+    }
+
+    .artist-song-details-conatiner{
+        margin: 2vh 10vw;
+    }
+    .artist-song-details-heading{
+        margin: 1vh 1vw;
+        font-weight: bold;
+    }
+
+    .artist-song-img{
+        width: 15vw;
+        height: 10vh;
+
+    }
+}
+
+@media all and (min-width: 768px) and (max-width: 991px) {
+    /* Home: 991px */
+
+    .home-page-left{
+        padding: 5vh 20vw;
+        text-align: center;
+    }
+
+    .home-page-heading{
+        font-size: 30px;
+        font-weight: 800;
+        letter-spacing: 10px;
+        margin-bottom: 0;
+    }
+
+    .home-page-info-text{
+        text-align: left;
+    }
+
+    .home-page-register-btn{
+        width: 30vw;
+        border-radius: 10px;
+    }
+
+    .home-page-right{
+        padding: 5vh 20vw;
+    }
+
+    .home-page-form{
+        width: 50vw;
+        margin: 1vh 5vw;
+        padding: 2vh 2vw;
+        border: 1px solid rgba(232, 232, 232, 0.5);
+        border-radius: 10px;
+        background-color: rgba(232, 232, 232, 0.5);
+    }
+
+    .home-page-input-field{
+        margin: 2vh 0;
+        padding: 1vh 1vw 1vh 2vw;
+        border-radius: 10px;
+    }
+
+    .home-page-login-btn{
+        width: 20vw;
+        border-radius: 15px;
+        margin-top: 2vh;
+        margin-right: 2vw;
+    }
+
+    /* Topbar: 991px */
+    .header{
+        padding: 0 10px;
+    }
+
+    /* Bottombar: 991px */
+    .footer{
+        padding: 18px 10px;
+    }
+
+    /* Topsongs: 991px */
+    .user-home-song-artwork-img{
+        width: 15vw;
+        height: 10vh;
+    }
+}
+
+@media all and (min-width: 992px) and (max-width: 1284px) {
+    /* Home: 1284px */
+
+    .home-page-left{
+        padding: 25vh 5vw ;
+        text-align: center;
+    }
+
+    .home-page-right{
+        padding: 22vh 5vw;
+    }
+
+    .home-page-form{
+        width: 40vw;
+        padding: 2vh 2.5vw 5vh 2.5vw;
+        border: 1px solid rgba(232, 232, 232, 0.5);
+        border-radius: 10px;
+        background-color: rgba(232, 232, 232, 0.5);
+    }
+
+
+
+    .home-page-login-btn{
+        width: 15vw;
+        border-radius: 15px;
+        margin-top: 2vh;
+    }
+
+    /* Topsongs: 1284px */
+    .user-home-song-artwork-img{
+        width: 8vw;
+        height: 10vh;
+    }
+
+
+}
 
 
 

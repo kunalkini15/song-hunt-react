@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
 import { getArtists } from '../api/deltax';
-import {Table} from 'antd';
+import {Table, Spin} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+
+const antIcon = <LoadingOutlined className="loading-icon" spin />;
 
 export default class TopArtists extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            artistDetails: []
+            artistDetails: [],
+            loading: true
         }
     }
 
     componentDidMount = async () => {
         const response = await getArtists();
-        this.setState({artistDetails: response.data});
+        this.setState({
+            artistDetails: response.data,
+            loading: false
+        });
     }
 
     render() {
@@ -65,12 +72,17 @@ export default class TopArtists extends Component {
                     <h1 className="display-inline heading"> Artists </h1>
                     <span className="heading-info-text"> Artists with higher rating are displayed first. </span>
                 </div>
-                <Table 
+                {
+                    this.state.loading
+                    ? <div className="loading-icon-container"><Spin indicator={antIcon} /> </div>
+                    :<Table 
                     columns={columns} 
                     dataSource={data} 
                     pagination={{ pageSize: 3 }}
-                    
+                    scroll = {{x: 600 }}
                     />
+                }
+                
             </div>
         )
     }

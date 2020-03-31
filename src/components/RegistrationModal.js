@@ -118,11 +118,11 @@ export default class RegistrationModal extends Component {
           ]}
         >
           <Row>
-            <Col lg={6}>
+            <Col span={6}>
               {" "}
               <b>Name:</b>
             </Col>
-            <Col lg={10}>
+            <Col lg={10} md={12} sm={12} xs={16}>
               <Input
                 placeholder="Enter your full name"
                 onChange={this.handleNameChange}
@@ -130,11 +130,11 @@ export default class RegistrationModal extends Component {
             </Col>
           </Row>
           <Row className="row-top-margin">
-            <Col lg={6}>
+            <Col span={6}>
               {" "}
               <b>Email:</b>
             </Col>
-            <Col lg={10}>
+            <Col lg={10} md={12} sm={12} xs={16}>
               <Input
                 placeholder="Enter email"
                 onChange={this.handleEmailChange}
@@ -142,10 +142,10 @@ export default class RegistrationModal extends Component {
             </Col>
           </Row>
           <Row className="row-top-margin">
-            <Col lg={6}>
+            <Col span={6}>
               <b>Password:</b>{" "}
             </Col>
-            <Col lg={10}>
+            <Col lg={10} md={12} sm={12} xs={16}>
               <Input.Password
                 placeholder="Enter password"
                 onChange={this.handlePasswordChange}
@@ -153,10 +153,10 @@ export default class RegistrationModal extends Component {
             </Col>
           </Row>
           <Row className="row-top-margin">
-            <Col lg={6}>
+            <Col span={6}>
               <b>Confirm:</b>{" "}
             </Col>
-            <Col lg={10}>
+            <Col lg={10} md={12} sm={12} xs={16}>
               <Input.Password
                 placeholder="Enter password again"
                 onChange={this.handleConfirmPasswordChange}
@@ -174,19 +174,19 @@ export default class RegistrationModal extends Component {
 
               <React.Fragment>
                 <Row className="row-top-margin">
-                  <Col lg={6}>
+                  <Col span={6}>
                     <b>DOB:</b>
                   </Col>
-                  <Col lg={10}>
+                  <Col lg={10} md={12} sm={12} xs={16}>
                       <DatePicker onChange={this.handleDobChange} />
 
                   </Col>
                 </Row>
                 <Row className="row-top-margin">
-                    <Col lg={6}>
+                    <Col span={6}>
                         <b>Bio:</b>
                       </Col>
-                      <Col lg={10}>
+                      <Col lg={10} md={12} sm={12} xs={16}>
                           <Input.TextArea onChange={this.handleBioChange}/>
 
                       </Col>

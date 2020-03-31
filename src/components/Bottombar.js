@@ -6,10 +6,10 @@ export default class Bottombar extends Component {
         return (
            <Footer className="footer">
                <Row>
-                   <Col lg={12}>
+                   <Col span={12}>
                         <h3 className="footer-logo"> SongHunt </h3>
                    </Col>
-                   <Col lg={12}>
+                   <Col span={12}>
                        <p className="float-right"> Copyright &copy; {new Date().getFullYear()} Kunal  </p>
                    </Col>
                </Row>

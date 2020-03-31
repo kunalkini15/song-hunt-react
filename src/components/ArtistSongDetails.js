@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import {Table} from 'antd';
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export default class ArtistSongDetails extends Component {
+
+
+    getDate = (date) => {
+        const dateObject = new Date(date);
+        return months[dateObject.getMonth()] + " " + dateObject.getDate() + " " + dateObject.getFullYear();
+    }
+
     render() {
         const artistAllSongs = this.props.artistAllSongs;
         const columns = [
@@ -11,7 +20,7 @@ export default class ArtistSongDetails extends Component {
                 render: text => {
                     if(text){
                         const imagePath = "http://localhost:8000" + text
-                        return <img src={imagePath} className="song-artwork-img" alt="artwork"/>
+                        return <img src={imagePath} className="song-artwork-img artist-song-img" alt="artwork"/>
                     }
                         
                     else return null;
@@ -35,7 +44,7 @@ export default class ArtistSongDetails extends Component {
                 key: index,
                 artwork: item.image,
                 name: item.name,
-                release_date: item.release_date
+                release_date: this.getDate(item.release_date)
             }
 
             data.push(currentSongObj);
@@ -43,7 +52,11 @@ export default class ArtistSongDetails extends Component {
         return (
             <div className="artist-song-details-conatiner">
                 <h2 className="artist-song-details-heading"> Your songs:  </h2> 
-                <Table columns={columns} dataSource={data} className="artist-song-details-table"/>
+                <Table 
+                    columns={columns} 
+                    dataSource={data} 
+                    pagination={{ pageSize: 4 }}
+                    className="artist-song-details-table"/>
             </div>
         )
     }

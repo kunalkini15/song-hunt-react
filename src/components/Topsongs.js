@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { getSongs, userRating } from '../api/deltax'
-import {Table, Rate, Popconfirm, message} from 'antd';
+import {Table, Rate, Popconfirm, Spin} from 'antd';
 import {reactLocalStorage} from 'reactjs-localstorage';
-
+import { LoadingOutlined } from '@ant-design/icons';
+const antIcon = <LoadingOutlined className="loading-icon" spin />;
 let selectedRecord = undefined
 let userSelectedRating = undefined
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export default class Topsongs extends Component {
     constructor(props){
         super(props);
@@ -12,14 +15,23 @@ export default class Topsongs extends Component {
             songDetails: [],
             userRating: undefined,
             selectedRecord: undefined,
-            ratingUpdateConfirmed: false
+            ratingUpdateConfirmed: false,
+            loading: true
         }
+    }
+
+    getDate = (date) => {
+        const dateObject = new Date(date);
+        return months[dateObject.getMonth()] + " " + dateObject.getDate() + " " + dateObject.getFullYear();
     }
 
     componentDidMount = async () => {
         const email = reactLocalStorage.get('email',undefined, true)
         const response = await getSongs(email);
-        this.setState({songDetails: response.data});
+        this.setState({
+            songDetails: response.data,
+            loading: false
+        });
     }
 
     handleRatingChange = (number) => {
@@ -36,12 +48,16 @@ export default class Topsongs extends Component {
         const email = reactLocalStorage.get('email',undefined, true)
             try
             {
-               const ratingResponse =  await userRating(email, selectedRecord.key, userSelectedRating);
-               message.success(ratingResponse.data);
+               
+               await userRating(email, selectedRecord.key, userSelectedRating);
                selectedRecord = undefined
                userSelectedRating = undefined
+               this.setState({loading: true})
                const response = await getSongs(email);
-               this.setState({songDetails: response.data});
+               this.setState({
+                   songDetails: response.data,
+                   loading: false
+                });
 
             }
             catch(err)
@@ -70,20 +86,18 @@ export default class Topsongs extends Component {
                     }
                         
                     else return null;
-                },
-                width: "5vw"
+                }
             },
             {
                 title: 'Name',
                 dataIndex: 'name',
-                key: 'name',
-                width: "8vw"
+                key: 'name'
             },
             {
                 title: 'Release date',
                 dataIndex: 'release_date',
-                key: 'release_date',
-                width: "7vw"
+                key: 'release_date'
+    
             },
             {
                 title: 'Artists',
@@ -99,8 +113,7 @@ export default class Topsongs extends Component {
                             } </p>
                         })
                     )
-                },
-                width: "15vw"
+                }
             },
             {
                 title: 'Overall Rating',
@@ -110,7 +123,7 @@ export default class Topsongs extends Component {
                                             <Rate allowHalf disabled defaultValue={ratingDetails.rating__avg} />
                                             <p className="rating-info-text"> Total reviews: {ratingDetails.rating__count} </p>
                                         </React.Fragment>,
-                width: '10vw'
+                width: 200
             },
             {
                 title: 'Your Rating',
@@ -146,7 +159,6 @@ export default class Topsongs extends Component {
 
                     )
                 },
-                width: '10vw',
                 onCell: (record, rowIndex) => {
                     return{
                         onClick: (event) => {selectedRecord = record}
@@ -164,7 +176,7 @@ export default class Topsongs extends Component {
                 key: current_song.song.id,
                 artwork: current_song.song.image,
                 name: current_song.song.name,
-                release_date: current_song.song.release_date,
+                release_date: this.getDate(current_song.song.release_date),
                 artists: current_song.artists,
                 rating: current_song.rating,
                 user_rating: current_song.user_rating
@@ -178,12 +190,19 @@ export default class Topsongs extends Component {
                 <h1 className="display-inline heading"> Songs </h1>
                 <span className="heading-info-text"> Songs with higher rating are displayed first. </span>
                 </div>
-                <Table 
-                    columns={columns} 
-                    dataSource={data} 
-                    pagination={{ pageSize: 3 }}
-                    
+                {
+                    this.state.loading
+                    ? <div className="loading-icon-container"><Spin indicator={antIcon} /> </div>
+                    : <Table 
+                        className="top-songs-table"
+                        columns={columns} 
+                        dataSource={data} 
+                        pagination={{ pageSize: 3 }}
+                        scroll = {{x: 1000 }}
+                        
                     />
+                }
+                
 
             </div>
         )

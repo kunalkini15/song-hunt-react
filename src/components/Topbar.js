@@ -14,10 +14,10 @@ export default class Topbar extends Component {
         return (
             <Header className="header">
                 <Row>
-                    <Col lg={12}>
+                    <Col span={12}>
                         <h3 className="header-logo"> SONGHUNT </h3>
                     </Col>
-                    <Col lg={12}>
+                    <Col span={12}>
                         <Button className="float-right btn-top-margin" onClick={this.handleLogout}>Logout </Button>
                     </Col>
 

@@ -25,12 +25,13 @@ export default class ArtistDetails extends Component {
         return (
             <div className="artist-details-container">
                 <Row>
-                    <Col lg={12} md={12}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                         <h1 className="heading"> Hi, {this.props.artistDetails.name} </h1>   
                     </Col>
-                    <Col lg={12} md={12}>
+                    <Col lg={12} md={12} sm={24} xs={24}>
                         <Button 
                             type="primary" 
+                            id = "add-new-song-btn"
                             className="btn-top-margin float-right"
                             onClick={this.handleAddSongClick}
                         > 

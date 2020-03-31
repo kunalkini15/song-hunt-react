@@ -59,7 +59,7 @@ export default class Home extends Component {
 
     renderHeading = () =>  <h1 className="home-page-heading white-text"> SONG HUNT </h1>
     
-    renderInfoText = () => <p className="white-text"> Song Hunt provides one central place for users and artists to collaborate.
+    renderInfoText = () => <p className="white-text home-page-info-text"> Song Hunt provides one central place for users and artists to collaborate.
                                 User can use Song hunt to rate the songs, explore new songs, explore artists, etc.
                                 Artists can use Song hunt to get user feedback, launch new song, etc.
                             </p>
