@@ -26,7 +26,7 @@ export default class ArtistDetails extends Component {
             <div className="artist-details-container">
                 <Row>
                     <Col lg={12} md={12}>
-                        <h1> Hi, {this.props.artistDetails.name} </h1>   
+                        <h1 className="heading"> Hi, {this.props.artistDetails.name} </h1>   
                     </Col>
                     <Col lg={12} md={12}>
                         <Button 

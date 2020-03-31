@@ -42,7 +42,8 @@ export default class ArtistSongDetails extends Component {
         })
         return (
             <div className="artist-song-details-conatiner">
-                <Table columns={columns} dataSource={data} />
+                <h2 className="artist-song-details-heading"> Your songs:  </h2> 
+                <Table columns={columns} dataSource={data} className="artist-song-details-table"/>
             </div>
         )
     }

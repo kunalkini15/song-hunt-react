@@ -37,7 +37,6 @@ export const login = async (email, password, isArtist) => {
 
 
 
-/* artist requests */
 export const getArtistDetails = async (email) => {
     const response = await deltax.get('artist/', {
         params: {
@@ -68,3 +67,27 @@ export const getArtistAllSongs = async (email) => {
 }
 
 
+export const getSongs = async (email) => {
+    const response = await deltax.get('topSongs/',{
+        params: {
+            email
+        }
+    });
+    return response;
+}
+
+
+export const userRating = async (email, id, rating) => {
+    const response = await deltax.post('userRating/',{
+        email,
+        id,
+        rating
+    })
+    return response;    
+}
+
+export const getArtists = async () => {
+    const response = await deltax.get('topArtists/')
+    console.log(response)
+    return response;
+}

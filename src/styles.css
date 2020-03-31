@@ -37,6 +37,10 @@ body{
     border-color: rgba(96, 85, 165,0.8);
 }
 
+.ant-table thead > tr > th, .ant-table tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+    padding: 10px 5px;
+}
+
 /* common */
 
 .white-text{
@@ -56,6 +60,20 @@ body{
 
 .btn-top-margin{
     margin-top: 2vh;
+}
+
+.display-inline{
+    display: inline;
+}
+
+.heading-info-text{
+    font-size: 8px;
+    color: var(--neutral-grayish-blue) 
+}
+
+.heading{
+    color: var(--accent-blue);
+    font-weight: bolder;
 }
 
 /* Home */
@@ -114,10 +132,30 @@ body{
     background: #e8e8e8;
 }
 
+.header-logo{
+    color: var(--accent-blue);
+    font-weight: bolder;
+    text-shadow: 2px 0px var(--accent-blue);
+    position: fixed;
+    transform: rotate(-5deg);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
 /* Bottombar */
 .footer{
     height: 10vh;
     background: #e8e8e8;
+}
+
+.footer-logo{
+    color: var(--accent-blue);
+    font-weight: bolder;
+    text-shadow: 2px 0px var(--accent-blue);
+    position: fixed;
+    transform: rotate(-5deg);
+    letter-spacing: 5px;
+    text-transform: uppercase;
 }
 
 /* ArtistDetails */
@@ -126,6 +164,15 @@ body{
 }
 
 /* ArtistSongDetails */
+
+.artist-song-details-heading{
+    margin: 1vh 5vw;
+    font-weight: bold;
+}
+.artist-song-details-table{
+    margin: 0 5vw;
+}
+
 .artist-song-details-conatiner{
     margin: 2vh 10vw;
 }
@@ -134,5 +181,29 @@ body{
     width: 10vw;
     height: 10vh;
 }
+
+/* UserHomeContent */
+.user-home-content{
+    padding: 0 10vw;
+}
+
+.user-home-heading-container{
+    margin: 2vh 0;
+}
+
+
+/* Topsongs */
+
+.user-home-song-artwork-img{
+    width: 5vw;
+    height: 10vh;
+}
+.rating-info-text{
+    margin-top: 1vh;
+    font-size: 8px;
+    color: var(--neutral-grayish-blue)
+}
+
+
 
 

@@ -24,8 +24,8 @@ export default class App extends Component {
     return (
       <div className="App">
         <Router history={history}>
-          <Route exact path="/" component={() => <Home setEmail = {this.setEmail}/>} />
-          <ProtectedRoute path="/user" component={() => <UserHome email={this.state.email}/>}/>
+    <Route exact path="/" component={() => <Home/>} />
+          <ProtectedRoute path="/user" component={() => <UserHome/>}/>
           <ProtectedRoute path="/artist" component={() => <ArtistHome/>}/>
         </Router>
       </div>
