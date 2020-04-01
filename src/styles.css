@@ -209,6 +209,13 @@ body{
     height: 10vh;
 }
 
+.img-not-found{
+    background-color: #e8e8e8;
+    word-wrap: break-word;
+    text-align: center;
+    padding-top: 3vh;
+}
+
 /* UserHomeContent */
 .user-home-content{
     padding: 0 10vw;
@@ -520,42 +527,7 @@ body{
     }
 }
 
-@media all and (min-width: 992px) and (max-width: 1284px) {
-    /* Home: 1284px */
 
-    .home-page-left{
-        padding: 25vh 5vw ;
-        text-align: center;
-    }
-
-    .home-page-right{
-        padding: 22vh 5vw;
-    }
-
-    .home-page-form{
-        width: 40vw;
-        padding: 2vh 2.5vw 5vh 2.5vw;
-        border: 1px solid rgba(232, 232, 232, 0.5);
-        border-radius: 10px;
-        background-color: rgba(232, 232, 232, 0.5);
-    }
-
-
-
-    .home-page-login-btn{
-        width: 15vw;
-        border-radius: 15px;
-        margin-top: 2vh;
-    }
-
-    /* Topsongs: 1284px */
-    .user-home-song-artwork-img{
-        width: 8vw;
-        height: 10vh;
-    }
-
-
-}
 
 
 

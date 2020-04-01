@@ -28,23 +28,28 @@ export default class Home extends Component {
     }
 
     handleLoginClick = async (isArtist) => {
-        const response = await login(this.state.email, this.state.password, isArtist);
-        if(response.status === 200)
-        {
-            message.success("Login Successful");
-            if(isArtist)
-                {
+        try{
+            const response = await login(this.state.email, this.state.password, isArtist);
+            if(response.status === 200)
+            {
+                message.success("Login Successful");
+                if(isArtist)
+                    {
+                        reactLocalStorage.set('email', this.state.email);
+                        reactLocalStorage.set('path', '/artist');
+                        history.push('/artist');
+                    }
+                else{
                     reactLocalStorage.set('email', this.state.email);
-                    history.push('/artist');
+                    reactLocalStorage.set('path', '/user');
+                    history.push('/user');
                 }
-            else{
-                reactLocalStorage.set('email', this.state.email);
-                history.push('/user');
             }
         }
-        else 
-            message.error(response.data);
-        
+        catch(err){
+            if(err.response) message.error(err.response.data);
+            else message.error("Something went wrong")
+        }
     }
 
     handleEmailChange = e => {

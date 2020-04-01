@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Input, Modal, Button, DatePicker, Select } from "antd";
+import { Row, Col, Input, Modal, Button, DatePicker, Select, message } from "antd";
 import {reactLocalStorage} from 'reactjs-localstorage';
 import { getAllArtistDetails } from "../api/deltax";
 import axios from 'axios';
@@ -20,22 +20,36 @@ export default class AddNewSongModal extends Component {
 
       handleOk = async () => {
         const email = reactLocalStorage.get('email',undefined, true);
-
-        if(email){
+        if(this.state.name === undefined)
+            message.error("Please enter a name to continue")
+        else if(this.state.date === undefined)
+            message.error("Please select release date to continue")
+        else if(new Date(this.state.date) > new Date())
+            message.error("Release date can't be greater than current day");
+        else if(email){
             const data = new FormData();
             data.append("name", this.state.name);
             data.append("release_date", this.state.date);
-            data.append("image", this.state.file, this.state.file.name);
+            if(this.state.file !== null)
+                data.append("image", this.state.file, this.state.file.name);
             data.append("selectedArtists", this.state.selectedArtists);
-            const url = "http://localhost:8000/song/"
-            await axios.post(url, data, {
-                headers: {
-                  'content-type': 'multipart/form-data',
-                  'email': email
-                }
-              })
+            try{
+                const url = "http://localhost:8000/song/"
+                await axios.post(url, data, {
+                    headers: {
+                    'content-type': 'multipart/form-data',
+                    'email': email
+                    }
+                })
+            }
+            catch(err){
+                if(err.response) message.error(err.response.data);
+                else message.error("Something went wrong")
+            }
+            
+              this.props.toggleAddSongModalVisibility(true);
         }
-        this.props.toggleAddSongModalVisibility(true);
+        
       };
       handleCancel = () => {
         this.props.toggleAddSongModalVisibility(false);
@@ -63,9 +77,16 @@ export default class AddNewSongModal extends Component {
 
     
       componentDidMount = async () => {
-            const email = reactLocalStorage.get('email',undefined, true);
-            const response = await getAllArtistDetails(email);
-            this.setState({allArtists: response.data})
+            try{
+                const email = reactLocalStorage.get('email',undefined, true);
+                const response = await getAllArtistDetails(email);
+                this.setState({allArtists: response.data})
+            }
+            
+            catch(err){
+                if(err.response) message.error(err.response.data);
+                else message.error("Something went wrong")
+            }
       }
 
       renderArtists = () => {
@@ -96,35 +117,34 @@ export default class AddNewSongModal extends Component {
                     ]}
                 >
                     <Row>
-                        <Col lg={6} md={6}>
-                        {" "}
-                        <b>Song name:</b>
+                        <Col lg={6} md={6} sm={6} xs={8}>
+                        <b>Song name: </b>
                         </Col>
-                        <Col lg={10} md={10}>
+                        <Col lg={10} md={10} sm={10} xs={16}>
                         <Input
-                            placeholder="Enter your full name"
+                            placeholder="Enter song name"
                             onChange={this.handleNameChange}
                         />
                         </Col>
                     </Row>
                     <Row className="row-top-margin">
-                        <Col lg={6} md={6}>
+                        <Col lg={6} md={6} sm={6} xs={8}>
                         {" "}
                         <b>Date released:</b>
                         </Col>
-                        <Col lg={10} md={10}>
+                        <Col lg={10} md={10} sm={10} xs={16}>
                             <DatePicker onChange={this.handleDateChange}/>
                         </Col>
                     </Row>
                     <Row className="row-top-margin">
-                        <Col lg={6} md={6}> <b>Artwork:</b> </Col>
-                        <Col lg={10} md={10}>
+                        <Col lg={6} md={6} sm={6} xs={8}> <b>Artwork:</b> </Col>
+                        <Col lg={10} md={10} sm={10} xs={16}>
                         <input type="file" onChange={this.handleFileChange}/>
                         </Col>
                     </Row>
                     <Row className="row-top-margin">
-                        <Col lg={6} md={6}> <b>Artists:</b> </Col>
-                        <Col lg={10} md={10}>
+                        <Col lg={6} md={6} sm={6} xs={8}> <b>Artists:</b> </Col>
+                        <Col lg={10} md={10} sm={10} xs={16}>
                         <Select
                             mode="multiple"
                             style={{ width: '100%' }}

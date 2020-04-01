@@ -37,33 +37,57 @@ export default class RegistrationModal extends Component {
     else {
       
         if(this.state.isArtist){
-          const response = await register(this.state.name, 
-                                            this.state.email,  
-                                            this.state.password, 
-                                            this.state.isArtist,
-                                            this.state.dob,
-                                            this.state.bio
-                                            
-                                            );
-          if(response.status === 201)
-            {
-                message.success("Artist created successfully. Please login to continue");
-                this.props.toggleRegistrationModalVisibility(false);
-            }
+          /* Artist Fields Error check */
+          if(this.state.dob === undefined)
+            message.error("Please enter date of birth to continue");
+          else if( new Date(this.state.dob) > new Date())
+            message.error("Date of birth can't be greater than current day");
+          else if(this.state.bio === undefined)
+            message.error("Please add your bio to continue");
           else{
-            message.error(response.data);
+            
+            try{
+              const response = await register(this.state.name, 
+                this.state.email,  
+                this.state.password, 
+                this.state.isArtist,
+                this.state.dob,
+                this.state.bio
+                
+                );
+                if(response.status === 201)
+                {
+                  message.success("Artist created successfully. Please login to continue");
+                  this.props.toggleRegistrationModalVisibility(false);
+                }
+              
+            }
+            catch(err)
+            {
+              if(err.response)
+                message.error(err.response.data);
+              else{
+                message.error("Something went wrong")
+              }
+            }
           }
+          
         }
         
         else{
-          const response = await register(this.state.name, this.state.email,  this.state.password, this.state.isArtist);
+          try
+          {
+            const response = await register(this.state.name, this.state.email,  this.state.password, this.state.isArtist);
           if(response.status === 201)
             {
                 message.success("User created successfully. Please login to continue");
                 this.props.toggleRegistrationModalVisibility(false);
             }
-          else{
-            message.error(response.data);
+          }
+          catch(err)
+          {
+            if(err.response)
+              message.error(err.response.data);
           }
         }
         

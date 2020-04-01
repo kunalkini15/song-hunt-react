@@ -88,6 +88,5 @@ export const userRating = async (email, id, rating) => {
 
 export const getArtists = async () => {
     const response = await deltax.get('topArtists/')
-    console.log(response)
     return response;
 }

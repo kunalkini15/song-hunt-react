@@ -3,15 +3,21 @@ import {Table} from 'antd';
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export default class ArtistSongDetails extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {
+            artistAllSongs: this.props.artistAllSongs,
+            loading: true
+        }
+    }
 
     getDate = (date) => {
         const dateObject = new Date(date);
         return months[dateObject.getMonth()] + " " + dateObject.getDate() + " " + dateObject.getFullYear();
     }
 
+
     render() {
-        const artistAllSongs = this.props.artistAllSongs;
         const columns = [
             {
                 title: 'Artwork',
@@ -23,7 +29,7 @@ export default class ArtistSongDetails extends Component {
                         return <img src={imagePath} className="song-artwork-img artist-song-img" alt="artwork"/>
                     }
                         
-                    else return null;
+                    else return <div className="song-artwork-img artist-song-img img-not-found"> <b> X </b></div>;
                 }
             },
             {
@@ -39,7 +45,7 @@ export default class ArtistSongDetails extends Component {
             }
         ]
         const data = []
-        artistAllSongs.forEach((item, index) => {
+        this.state.artistAllSongs.forEach((item, index) => {
             const currentSongObj = {
                 key: index,
                 artwork: item.image,
@@ -50,14 +56,17 @@ export default class ArtistSongDetails extends Component {
             data.push(currentSongObj);
         })
         return (
-            <div className="artist-song-details-conatiner">
-                <h2 className="artist-song-details-heading"> Your songs:  </h2> 
-                <Table 
-                    columns={columns} 
-                    dataSource={data} 
-                    pagination={{ pageSize: 4 }}
-                    className="artist-song-details-table"/>
+            <div>
+                    <div className="artist-song-details-conatiner">
+                        <h2 className="artist-song-details-heading"> Your songs:  </h2> 
+                        <Table 
+                            columns={columns} 
+                            dataSource={data} 
+                            pagination={{ pageSize: 4 }}
+                            className="artist-song-details-table"/>
+                    </div>
             </div>
+                
         )
     }
 }

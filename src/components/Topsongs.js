@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getSongs, userRating } from '../api/deltax'
-import {Table, Rate, Popconfirm, Spin} from 'antd';
+import {Table, Rate, Popconfirm, Spin, message} from 'antd';
 import {reactLocalStorage} from 'reactjs-localstorage';
 import { LoadingOutlined } from '@ant-design/icons';
 const antIcon = <LoadingOutlined className="loading-icon" spin />;
@@ -27,11 +27,20 @@ export default class Topsongs extends Component {
 
     componentDidMount = async () => {
         const email = reactLocalStorage.get('email',undefined, true)
-        const response = await getSongs(email);
-        this.setState({
-            songDetails: response.data,
-            loading: false
-        });
+        try{
+            const response = await getSongs(email);
+            this.setState({
+                songDetails: response.data,
+                loading: false
+            });
+
+            
+        }
+        catch(err){
+            if(err.response) message.error(err.response.data);
+            else message.error("Something went wrong")
+        }
+        
     }
 
     handleRatingChange = (number) => {
@@ -45,30 +54,30 @@ export default class Topsongs extends Component {
 
     handleUpdateRating = async () => {
 
-        const email = reactLocalStorage.get('email',undefined, true)
-            try
-            {
-               
-               await userRating(email, selectedRecord.key, userSelectedRating);
-               selectedRecord = undefined
-               userSelectedRating = undefined
-               this.setState({loading: true})
-               const response = await getSongs(email);
-               this.setState({
-                   songDetails: response.data,
-                   loading: false
+            const email = reactLocalStorage.get('email',undefined, true)
+            try{
+                await userRating(email, selectedRecord.key, userSelectedRating);
+            }
+            catch(err){
+                if(err.response) message.error(err.response.data);
+                else message.error("Something went wrong")
+            }
+            selectedRecord = undefined
+            userSelectedRating = undefined
+            this.setState({loading: true})
+            try{
+                const response = await getSongs(email);
+                this.setState({
+                    songDetails: response.data,
+                    loading: false
                 });
-
             }
-            catch(err)
-            {
-                if(err.response)
-                    console.log(err.response.data);
+            catch(err){
+                if(err.response) message.error(err.response.data);
+                else message.error("Something went wrong")
             }
-
+        }
         
-        
-    }
     render() {
         if(userSelectedRating !== undefined && selectedRecord !== undefined && this.state.ratingUpdateConfirmed)
            {

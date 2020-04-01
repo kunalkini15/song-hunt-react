@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getArtists } from '../api/deltax';
-import {Table, Spin} from 'antd';
+import {Table, Spin, message} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const antIcon = <LoadingOutlined className="loading-icon" spin />;
@@ -15,11 +15,19 @@ export default class TopArtists extends Component {
     }
 
     componentDidMount = async () => {
-        const response = await getArtists();
-        this.setState({
-            artistDetails: response.data,
-            loading: false
-        });
+        try{
+            const response = await getArtists();
+            this.setState({
+                artistDetails: response.data,
+                loading: false
+            });
+        }
+        
+        catch(err){
+            if(err.response) message.error(err.response.data);
+            else message.error("Something went wrong")
+        }
+        
     }
 
     render() {
@@ -45,8 +53,8 @@ export default class TopArtists extends Component {
                         songs.map((item, index) => {
                             return <p className="display-inline"> {item.name}{
                                 index !== songs.length-1 ? 
-                                                        <p className="display-inline">,</p>
-                                                        :<p className="display-inline">.</p>
+                                                        <span className="display-inline">,</span>
+                                                        :<span className="display-inline">.</span>
                             } </p>
                         })
                     )
