@@ -26,6 +26,7 @@ export default class Topsongs extends Component {
     }
 
     componentDidMount = async () => {
+
         const email = reactLocalStorage.get('email',undefined, true)
         try{
             const response = await getSongs(email);
@@ -90,7 +91,8 @@ export default class Topsongs extends Component {
                 key: 'artwork',
                 render: text => {
                     if(text){
-                        const imagePath = "http://localhost:8000" + text
+                        // const imagePath = "http://localhost:8000" + text
+                        const imagePath = "https://song-hunt-backend.herokuapp.com" + text
                         return <img src={imagePath} className="user-home-song-artwork-img" alt="artwork"/>
                     }
                         

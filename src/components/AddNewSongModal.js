@@ -34,7 +34,8 @@ export default class AddNewSongModal extends Component {
                 data.append("image", this.state.file, this.state.file.name);
             data.append("selectedArtists", this.state.selectedArtists);
             try{
-                const url = "http://localhost:8000/song/"
+                // const url = "http://localhost:8000/song/"
+                const url = "https://song-hunt-backend.herokuapp.com/song/"
                 await axios.post(url, data, {
                     headers: {
                     'content-type': 'multipart/form-data',

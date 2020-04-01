@@ -25,7 +25,8 @@ export default class ArtistSongDetails extends Component {
                 key: 'artwork',
                 render: text => {
                     if(text){
-                        const imagePath = "http://localhost:8000" + text
+                        // const imagePath = "http://localhost:8000" + text
+                        const imagePath = "https://song-hunt-backend.herokuapp.com" + text
                         return <img src={imagePath} className="song-artwork-img artist-song-img" alt="artwork"/>
                     }
                         
